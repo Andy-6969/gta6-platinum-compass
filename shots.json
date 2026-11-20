@@ -1,5 +1,6 @@
 [
-  { "file": "1-checklist.jpg", "path": "/", "viewport": { "width": 1280, "height": 800 } },
-  { "file": "2-silver.jpg", "path": "/", "grade": "silver", "viewport": { "width": 1280, "height": 800 } },
-  { "file": "3-bronze.jpg", "path": "/", "grade": "bronze", "scroll": 1400, "viewport": { "width": 1280, "height": 800 } }
+  { "file": "1-tracker.jpg", "path": "/?demo=1&open=28", "view": "tracker", "shows": "header progress and per-grade counts, export/import, spoiler switch, saved indicator, computed audit strip, kind and grade filter chips with counts, checklist with earned and spoiler-masked story trophies, Positive Mental Attitude open (official description, grade, counter, missable flag, dispute both ways, numbered cited steps), next-up stage and the guide's sources", "viewport": { "width": 1024, "height": 640 } },
+  { "file": "2-roadmap.jpg", "path": "/?demo=1#/roadmap", "view": "roadmap", "shows": "the stages to the platinum in order with their trophies, progress and cited steps", "viewport": { "width": 1024, "height": 640 } },
+  { "file": "3-missables.jpg", "path": "/?demo=1#/missables", "view": "missables", "shows": "chapter-by-chapter missable window matrix, each flag graded and cited", "viewport": { "width": 1024, "height": 640 } },
+  { "file": "4-sources.jpg", "path": "/?demo=1#/sources", "view": "sources", "shows": "the sources register with read dates and citation counts, and the disputes register", "viewport": { "width": 1024, "height": 640 } }
 ]

@@ -1,0 +1,68 @@
+/* Platinum Compass theme: a navigator's chart at night. Deep ink navy, brass for direction, a teal needle for
+   progress, coral for danger (missables). System fonts only; body type 15px. */
+:root {
+  --ink-0: #08131c;
+  --ink-1: #0d1b26;
+  --ink-2: #142735;
+  --ink-3: #1c3446;
+  --ink-line: #2a4a60;
+  --chart-grid: rgba(120, 170, 200, 0.06);
+  --text: #eef4f8;
+  --text-soft: #c2d3df;
+  --text-faint: #8fa9bb;
+  --brass: #f4b942;
+  --brass-deep: #b9831c;
+  --needle: #42d6c0;
+  --needle-deep: #1f8f80;
+  --coral: #ff7a66;
+  --amber-warn: #ffc857;
+  --violet-unconf: #b9a6ff;
+  --platinum: #d9e6f2;
+  --gold: #f6c544;
+  --silver: #aebccb;
+  --bronze: #d98c4f;
+  --radius: 7px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "Cascadia Mono", Consolas, "SFMono-Regular", Menlo, monospace;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font: 15px/1.42 var(--font);
+  color: var(--text);
+  background-color: var(--ink-0);
+  background-image:
+    linear-gradient(var(--chart-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--chart-grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+a { color: var(--needle); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+button, input { font: inherit; color: inherit; }
+
+button {
+  background: var(--ink-3);
+  border: 1px solid var(--ink-line);
+  border-radius: var(--radius);
+  padding: 4px 10px;
+  cursor: pointer;
+  line-height: 1.25;
+}
+button:hover { border-color: var(--brass); }
+button:focus-visible, a:focus-visible, input:focus-visible, .trophy-row:focus-visible { outline: 2px solid var(--brass); outline-offset: 1px; }
+button.primary { background: var(--brass); color: var(--ink-0); border-color: var(--brass); font-weight: 700; }
+
+h1, h2, h3 { margin: 0; line-height: 1.2; }
+
+.muted { color: var(--text-faint); }
+.small { font-size: 13px; }
+
+.boot-note { padding: 24px; color: var(--text-soft); }
+.boot-note.error { color: var(--coral); }

@@ -1,0 +1,5 @@
+# Output of `MAKEFUN_OUTPUT_DIR=out node main.ts` (the hand-in copy and dossier.json)
+out/
+node_modules/
+.DS_Store
+Thumbs.db
