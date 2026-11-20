@@ -1,33 +1,26 @@
-// Platinum Compass, an offline guide and tracker for the 55 PS5 trophies of Grand Theft Auto VI (make.fun bounty
-// gta6-trophy-guide-01). The guide is app/: plain ES modules and CSS with no build step and no library, loading only
-// its own files. app/data/ holds trophies.json (the official names, descriptions and grades with our cited guides,
-// counters and missable windows), sources.json (every page read, numbered as the guides cite it) and roadmap.json
-// (chapter columns and the stages to the platinum).
+// A working gta6-trophy-guide-01 entry (Node 22, standard library only): the guide is this directory's app/ folder,
+// plain static files a browser opens at app/index.html (ES modules, CSS, no build step), offline: it loads nothing
+// over the network, and its trophy list and guides are app/data/trophies.json. The program hands it in: it copies app/
+// and screenshots/ from beside this file to /output and writes /output/dossier.json, the summary the judge reads (your
+// screenshots, the first load's files and bytes, and your source), with the vendored make.fun library. Leave
+// vendor/makefun-frontend.ts as it is: the scorer requires dossier.json to be byte for byte what its own copy writes.
 //
-// This program hands the guide in: it copies app/ and screenshots/ (the cover first by name; shots.json says what each
-// one shows) to /output and writes /output/dossier.json with the vendored make.fun library, which must stay byte for
-// byte as the kit shipped it.
+// Only the plumbing, not a winner: a plain checklist of the 55 trophies with a one-line hint each. Write a real guide
+// for every trophy in your own words, a roadmap to the platinum, filters and a spoiler setting in app/, put 3 or 4 PNG
+// or JPEG screenshots of it in screenshots/ (the first by name is the cover; shots.json says which views this
+// starter's were taken of), and run it.
 //
-// Serve it locally with `node serve.ts`, then open http://localhost:8080 (add ?demo=1 for a sample run).
+// Serve it locally with `node serve.ts`, then open http://localhost:8080.
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
-import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-frontend.ts';
 
 const here = fileURLToPath(new URL('.', import.meta.url));
 const out = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
-
-// A sanity note before handing in (stderr only, never changes what is written): every trophy needs a non-blank
-// guide, and the list should hold the 55 official trophies.
-const trophyFile = JSON.parse(readFileSync(join(here, 'app', 'data', 'trophies.json'), 'utf8'));
-const trophyList: Array<{ name?: string; guide?: string }> = Array.isArray(trophyFile) ? trophyFile : trophyFile.trophies;
-const unguided = trophyList.filter((t) => !t.guide || !t.guide.trim()).map((t) => t.name);
-if (trophyList.length !== 55 || unguided.length) {
-  console.error(`platinum-compass: ${trophyList.length} trophies listed; without a guide: ${unguided.join(', ') || 'none'}`);
-}
 
 mkdirSync(out, { recursive: true });
 cpSync(join(here, 'app'), join(out, 'app'), { recursive: true });
