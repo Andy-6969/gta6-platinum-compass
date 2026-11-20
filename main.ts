@@ -12,13 +12,22 @@
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
-import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-frontend.ts';
 
 const here = fileURLToPath(new URL('.', import.meta.url));
 const out = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
+
+// A sanity note before handing in (stderr only, never changes what is written): every trophy needs a non-blank
+// guide, and the list should hold the 55 official trophies.
+const trophyFile = JSON.parse(readFileSync(join(here, 'app', 'data', 'trophies.json'), 'utf8'));
+const trophyList: Array<{ name?: string; guide?: string }> = Array.isArray(trophyFile) ? trophyFile : trophyFile.trophies;
+const unguided = trophyList.filter((t) => !t.guide || !t.guide.trim()).map((t) => t.name);
+if (trophyList.length !== 55 || unguided.length) {
+  console.error(`platinum-compass: ${trophyList.length} trophies listed; without a guide: ${unguided.join(', ') || 'none'}`);
+}
 
 mkdirSync(out, { recursive: true });
 cpSync(join(here, 'app'), join(out, 'app'), { recursive: true });

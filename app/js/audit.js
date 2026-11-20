@@ -3,6 +3,7 @@
 // flags, disputes, and any citation that points at a source number the sources file does not hold.
 import { citesOfTrophy } from './data.js';
 import { isMissableFlag } from './filters.js';
+import { citeNumbers } from './guide-text.js';
 
 const GRADES = ['platinum', 'gold', 'silver', 'bronze'];
 
@@ -20,7 +21,8 @@ export function computeAudit(model) {
   const citedGuides = trophies.filter((t) => t.guideCites.length > 0).length;
 
   const usedCites = new Set(trophies.flatMap(citesOfTrophy));
-  for (const stage of model.stages) for (const step of stage.steps ?? []) for (const m of String(step).matchAll(/\[(\d+)\]/g)) usedCites.add(Number(m[1]));
+  const roadmapTexts = [...model.stages.flatMap((s) => [...(s.steps ?? []), s.effort]), ...model.roadmapNotes, ...model.cutoffs.map((c) => c.text), model.cutoffsNote];
+  for (const text of roadmapTexts) for (const n of citeNumbers(text)) usedCites.add(n);
   const brokenCites = [...usedCites].filter((n) => !sourceById.has(n));
 
   const missable = trophies.filter(isMissableFlag);

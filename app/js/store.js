@@ -112,6 +112,6 @@ export function validateImportedProgress(doc, trophies) {
   return {
     ok: true,
     progress: { earned, counters, revealed, spoilers: doc.spoilers !== false },
-    summary: `${earned.length} earned, ${Object.keys(counters).length} counters`,
+    summary: `${earned.length} earned ${earned.length === 1 ? 'trophy' : 'trophies'} and ${Object.keys(counters).length} ${Object.keys(counters).length === 1 ? 'counter' : 'counters'}`,
   };
 }

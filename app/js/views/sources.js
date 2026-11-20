@@ -9,12 +9,13 @@ export function renderSourcesView(root, model, store, ui, focusNumber) {
   const usage = new Map(model.sources.map((s) => [s.id, []]));
   for (const t of model.trophies) for (const n of citesOfTrophy(t)) usage.get(n)?.push(t);
   const disputes = model.trophies.flatMap((t) => (t.disputes ?? []).map((d) => ({ trophy: t, dispute: d })));
-  const kinds = [...new Set(model.sources.map((s) => s.kind))];
+  const guides = model.sources.filter((s) => /guide|walkthrough|checklist|map|list with tips/.test(s.kind)).length;
+  const news = model.sources.filter((s) => /news/.test(s.kind)).length;
   mount(root,
     el('div', { id: 'sources-view', class: 'sources-view' },
       el('header', { class: 'view-head' },
-        el('h1', { text: 'Sources register' }),
-        el('p', { class: 'muted', text: `${model.sources.length} pages from ${new Set(model.sources.map((s) => s.site)).size} sites, each read for this guide; kinds: ${kinds.join(', ')}. Every step is written in our own words and ends with the numbers of the pages it rests on. Links open only if you follow them; the app itself loads nothing from them.` })),
+        el('h1', { text: `Sources register · ${model.sources.length} pages, ${new Set(model.sources.map((s) => s.site)).size} sites` }),
+        el('p', { class: 'muted', text: `${guides} guides, walkthroughs and maps, ${news} news pages, the rest lists and wikis; each read on the date shown. Steps are our own words, ending in the numbers of the pages they rest on. Links open only if you follow them.` })),
       el('div', { class: 'sources-columns' },
         el('table', { id: 'sources-table', class: 'sources-table' },
           el('thead', {}, el('tr', {}, ['#', 'Site · page', 'Kind', 'Read', 'Cited by'].map((h) => el('th', { text: h })))),

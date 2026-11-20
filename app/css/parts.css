@@ -184,7 +184,21 @@
 .roadmap-note { color: var(--text-soft); font-size: 14.5px; }
 
 /* Roadmap */
-.stage-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); gap: 10px; }
+.route-strip { list-style: none; margin: 0 0 10px; padding: 8px 6px 6px; display: grid; position: relative; background: var(--ink-1); border: 1px solid var(--ink-line); border-radius: var(--radius); }
+.route-strip::before { content: ""; position: absolute; left: 4%; right: 4%; top: 22px; border-top: 2px dashed var(--brass-deep); }
+.waypoint { position: relative; text-align: center; }
+.waypoint a { display: flex; flex-direction: column; align-items: center; gap: 1px; color: var(--text-soft); text-decoration: none; }
+.waypoint-dot { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; background: var(--ink-3); border: 2px solid var(--ink-line); color: var(--text); position: relative; }
+.waypoint.complete .waypoint-dot { background: var(--needle); border-color: var(--needle); color: var(--ink-0); }
+.waypoint.current .waypoint-dot { background: var(--brass); border-color: var(--text); color: var(--ink-0); box-shadow: 0 0 0 4px rgba(244, 185, 66, 0.3); }
+.waypoint-name { font-size: 13px; font-weight: 700; line-height: 1.15; }
+.waypoint.current .waypoint-name { color: var(--brass); }
+.waypoint-count { font: 700 12.5px var(--mono); color: var(--needle); }
+.roadmap-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
+.roadmap-facts .roadmap-note { margin: 0; padding: 6px 9px; background: var(--ink-2); border-left: 3px solid var(--brass); border-radius: 4px; font-size: 14px; line-height: 1.35; }
+.stage-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 10px; align-items: start; }
+.stage-bar { height: 5px; background: var(--ink-0); border-radius: 3px; overflow: hidden; margin: 4px 0; }
+.stage-bar span { display: block; height: 100%; background: var(--needle); }
 .stage-card { display: flex; gap: 10px; background: var(--ink-1); border: 1px solid var(--ink-line); border-radius: var(--radius); padding: 9px 11px; }
 .stage-card.current { border-color: var(--needle); box-shadow: 0 0 0 1px var(--needle); }
 .stage-card.focused { border-color: var(--brass); }
@@ -194,7 +208,7 @@
 .stage-body { flex: 1; min-width: 0; }
 .stage-head { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
 .stage-head h2 { font-size: 16.5px; }
-.stage-when { color: var(--text-faint); font-size: 13.5px; }
+.stage-when { color: var(--text-faint); font-size: 13.5px; margin: 1px 0 0; }
 .stage-progress { margin-left: auto; font: 700 14px var(--mono); color: var(--needle); }
 .stage-effort { margin: 3px 0; color: var(--brass); font-size: 14px; }
 .stage-trophies { list-style: none; display: flex; flex-wrap: wrap; gap: 4px; margin: 6px 0; padding: 0; }
@@ -209,10 +223,17 @@
 .missable-matrix { border-collapse: collapse; width: 100%; font-size: 14.5px; }
 .missable-matrix th, .missable-matrix td { border: 1px solid var(--ink-line); padding: 4px 7px; text-align: left; vertical-align: top; }
 .missable-matrix thead th { background: var(--ink-2); font-size: 13px; color: var(--text-soft); position: sticky; top: 0; }
-.missable-matrix .trophy-col a { color: var(--text); display: inline-flex; gap: 5px; align-items: center; font-weight: 700; white-space: nowrap; }
+.missable-matrix .trophy-col a { color: var(--text); display: flex; gap: 5px; align-items: center; font-weight: 700; white-space: nowrap; margin-bottom: 3px; }
+.missable-matrix tbody .trophy-col { width: 215px; }
+.story-cutoffs { margin-top: 12px; }
+.story-cutoffs h2 { font-size: 17px; color: var(--brass); }
+.story-cutoffs p { margin: 2px 0 6px; font-size: 14px; }
+.cutoff-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 14px; font-size: 14.5px; }
+.cutoff-list li { display: flex; gap: 8px; align-items: baseline; padding: 3px 0; border-bottom: 1px solid var(--ink-line); }
+.cutoff-chapter { flex: none; width: 58px; font: 700 12.5px var(--mono); color: var(--brass); }
 .missable-matrix tr.earned .trophy-col a { color: var(--needle); }
 .chapter-col { text-align: center; white-space: nowrap; }
-.cell { text-align: center !important; font-weight: 800; font-size: 15px; vertical-align: middle !important; width: 52px; }
+.cell { text-align: center !important; font-weight: 800; font-size: 15px; vertical-align: middle !important; width: 46px; }
 .cell-open { background: rgba(66, 214, 192, 0.18); color: var(--needle); }
 .cell-last { background: rgba(255, 122, 102, 0.28); color: var(--coral); }
 .cell-closed { background: rgba(8, 19, 28, 0.9); color: #5e7586; }
@@ -236,6 +257,7 @@
 .sources-table tr.focused { background: rgba(244, 185, 66, 0.15); }
 .source-note { display: block; color: var(--text-faint); font-size: 13px; }
 .used-by { font: 700 14px var(--mono); color: var(--needle); text-align: right; }
+.sources-table td:nth-child(4) { white-space: nowrap; font-size: 13px; color: var(--text-soft); }
 .dispute-register h2 { font-size: 17px; color: var(--brass); margin-bottom: 4px; }
 .dispute.compact .dispute-side { margin: 4px 0; }
 .dispute-trophy { font-weight: 800; }

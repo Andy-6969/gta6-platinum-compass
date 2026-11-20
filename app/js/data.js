@@ -32,6 +32,8 @@ export async function loadGuideModel() {
     stages: roadmapDoc.stages,
     stageById,
     roadmapNotes: roadmapDoc.notes ?? [],
+    cutoffs: roadmapDoc.cutoffs ?? [],
+    cutoffsNote: roadmapDoc.cutoffsNote ?? '',
   };
 }
 

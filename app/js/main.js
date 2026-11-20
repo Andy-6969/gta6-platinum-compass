@@ -86,7 +86,7 @@ function wireHeaderControls(model, store) {
   byId('export-progress').addEventListener('click', () => {
     const doc = buildExportDocument(store.state, model.trophies);
     downloadProgressFile(doc);
-    showToast(`Exported ${doc.earned.length} earned trophies and ${Object.keys(doc.counters).length} counters to a JSON file.`, 'ok');
+    showToast(`Exported ${plural(doc.earned.length, 'earned trophy', 'earned trophies')} and ${plural(Object.keys(doc.counters).length, 'counter', 'counters')} to a JSON file.`, 'ok');
   });
   const fileInput = byId('import-file');
   byId('import-progress').addEventListener('click', () => fileInput.click());
@@ -100,6 +100,10 @@ function wireHeaderControls(model, store) {
     if (!result.ok) { showToast(`Import refused: ${result.error} Nothing was changed.`, 'error'); return; }
     confirmImport(file.name, result, store);
   });
+}
+
+function plural(n, one, many) {
+  return `${n} ${n === 1 ? one : many}`;
 }
 
 function confirmImport(fileName, result, store) {

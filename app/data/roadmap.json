@@ -14,6 +14,18 @@
     { "id": "ch5", "label": "Ch 5", "title": "Chapter 5: Bird in the Hand to The End of the Road" },
     { "id": "post", "label": "Post-game", "title": "Free roam after the final mission" }
   ],
+  "cutoffsNote": "Points where content closes during the story. PowerPyx finds that none of them costs a trophy except the Chapter 1 meditation [2].",
+  "cutoffs": [
+    { "chapter": "ch1", "text": "Tourist Trap costs Jason's house and ends Shirley's errands; save before it [29][20]." },
+    { "chapter": "ch1", "text": "Shirley's two errands are Chapter 1 only; her strand does not count for Strangers & Freaks [5][33]." },
+    { "chapter": "ch1", "text": "Gang operations robbed before the end-of-chapter money wipe still count for Pest Control [8]." },
+    { "chapter": "ch1", "text": "Kenton leaves after Chapter 1 and texts Jason again in Chapters 2 to 3 [2][32]." },
+    { "chapter": "ch2", "text": "The console at Jason's house is unavailable for part of Chapter 2 [16]." },
+    { "chapter": "ch3", "text": "Race Against Yago is time-limited [20][33]; Monty's 1992 Pistol exists only during The Missing Link [29]." },
+    { "chapter": "ch4", "text": "Bad Driver! closes when Power Play starts, and This Is a Free Call From… can expire [29][20]." },
+    { "chapter": "ch4", "text": "From Making Gainz to VCIA Takedown the couple cannot be seen together in public [29]." },
+    { "chapter": "any", "text": "The Irredeemable criminal profile cannot be undone, and police then shoot on sight [15][2]." }
+  ],
   "stages": [
     {
       "id": "s1", "order": 1, "title": "Prologue & Chapter 1", "short": "Chapter 1", "when": "Story · Prologue to Discharge Time",

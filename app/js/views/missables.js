@@ -40,9 +40,21 @@ export function renderMissablesView(root, model, store) {
         el('p', { class: 'legend' }, Object.entries(CELL).filter(([k]) => k !== 'before').map(([k, c]) => el('span', { class: `legend-item cell-${k}` }, el('b', { text: c.mark }), ` ${c.label}`)))),
       el('div', { class: 'matrix-wrap' },
         el('table', { id: 'missable-matrix', class: 'missable-matrix' },
-          el('thead', {}, el('tr', {}, el('th', { class: 'trophy-col', text: 'Trophy' }), el('th', { text: 'Grade of flag' }),
+          el('thead', {}, el('tr', {}, el('th', { class: 'trophy-col', text: 'Trophy · flag' }),
             model.chapters.map((c) => el('th', { class: 'chapter-col', title: c.title ?? c.label, text: c.label })), el('th', { class: 'note-col', text: 'Last chance · why' }))),
-          el('tbody', {}, flagged.map((t) => renderMatrixRow(t, model, store)))))));
+          el('tbody', {}, flagged.map((t) => renderMatrixRow(t, model, store))))),
+      renderCutoffs(model)));
+}
+
+/** Story moments where other content closes, by chapter, each cited. */
+function renderCutoffs(model) {
+  if (!model.cutoffs.length) return null;
+  const label = (id) => model.chapters.find((c) => c.id === id)?.label ?? 'Any time';
+  return el('section', { id: 'story-cutoffs', class: 'story-cutoffs' },
+    el('h2', { text: `Other cut-off points · ${model.cutoffs.length}` }),
+    citedText(model.cutoffsNote, model, 'p', { class: 'muted' }),
+    el('ul', { class: 'cutoff-list' }, model.cutoffs.map((c) => el('li', {},
+      el('span', { class: 'cutoff-chapter', text: label(c.chapter) }), citedText(c.text, model)))));
 }
 
 function rankStatus(t) {
@@ -52,8 +64,9 @@ function rankStatus(t) {
 function renderMatrixRow(trophy, model, store) {
   const m = trophy.missable;
   return el('tr', { class: store.isEarned(trophy.id) ? 'earned' : '' },
-    el('th', { class: 'trophy-col', scope: 'row' }, el('a', { href: `#/tracker/${trophy.id}` }, gradeBadge(trophy.grade, 'small'), visibleTitle(trophy, store))),
-    el('td', {}, el('span', { class: `status-pill missable-${m.status}`, text: MISSABLE_LABEL[m.status] })),
+    el('th', { class: 'trophy-col', scope: 'row' },
+      el('a', { href: `#/tracker/${trophy.id}` }, gradeBadge(trophy.grade, 'small'), visibleTitle(trophy, store)),
+      el('span', { class: `status-pill missable-${m.status}`, text: MISSABLE_LABEL[m.status] })),
     model.chapters.map((c, i) => {
       const state = windowStateAt(m, model.chapters, i);
       return el('td', { class: `cell cell-${state}`, title: `${c.label}: ${CELL[state].label}`, text: CELL[state].mark });

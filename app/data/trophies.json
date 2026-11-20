@@ -181,7 +181,7 @@
       "id": 25, "name": "Strangers & Freaks", "description": "Complete 8 mission strands for strangers across the state of Leonida.", "grade": "silver", "hidden": false, "exophaseRate": "0.03",
       "kinds": ["side"], "stage": "s6", "sources": [1],
       "count": { "target": 8, "unit": "strands", "basis": "Target from the official description [1]." },
-      "missable": { "status": "possible", "from": "ch3", "last": "ch3", "after": "closed", "window": "Race Against Yago, Chapter 3 (time-limited)", "lastChance": "Before Race Against Yago expires in Chapter 3", "note": "Yago's strand counts and his race is time-limited [9][20]; PowerPyx says missable quests do not count [5]. Other strands stay open after the story [15][32]." },
+      "missable": { "status": "possible", "from": "ch3", "last": "ch3", "after": "closed", "window": "Race Against Yago, Chapter 3 (time-limited)", "lastChance": "Before Race Against Yago expires in Chapter 3", "note": "Yago's strand counts and his race is time-limited [9][20]; other strands stay open [15][32]." },
       "disputes": [
         { "topic": "Does the time-limited Race Against Yago matter", "sides": ["Yago's strand counts and his race can expire, so it is a risk [27][9][20].", "Quests that can be missed do not count toward the eight [5]."], "call": "Do it when it appears in Chapter 3: it costs nothing and settles the question." }
       ],
@@ -245,7 +245,7 @@
     {
       "id": 33, "name": "Hot Together", "description": "Lose a 4 star Wanted Level with your partner and escape the heat.", "grade": "bronze", "hidden": false, "exophaseRate": "0.09",
       "kinds": ["crime"], "stage": "s2", "sources": [1],
-      "missable": { "status": "unconfirmed", "from": "ch2", "last": "ch5", "after": "unknown", "window": "From Coffee Break (Chapter 2)", "lastChance": "Before the final mission (precaution)", "note": "Game-Checklists advises finishing partner trophies before the final mission in case the ending limits who you can play [20]; free roam is said to stay open [15]." },
+      "missable": { "status": "unconfirmed", "from": "ch2", "last": "ch5", "after": "unknown", "window": "From Coffee Break (Chapter 2)", "lastChance": "Before the final mission (precaution)", "note": "Precaution: finish partner trophies before the final mission in case the ending limits who you play [20]; free roam stays open [15]." },
       "guide": "With your partner along, reach four stars and get clear of the heat zone [9][27].\n1. Possible from Coffee Break in Chapter 2 [15][2].\n2. Call your partner first by holding right on the d-pad, then Triangle [15][2].\n3. Leaving the flashing search area is not enough: you must get out of the red heat zone [9][27].\n4. Vault robberies start at four stars, so it often comes with them, and it pops during That's Where The Money Is… [9][2].\n5. The train tunnel north of Ambrosia in Kelly County is a suggested escape [2][15][19]."
     },
     {
@@ -345,7 +345,7 @@
     {
       "id": 47, "name": "Personal Best", "description": "A partnership with mass appeal.", "grade": "bronze", "hidden": true, "exophaseRate": "0.04",
       "kinds": ["activity"], "stage": "s2", "sources": [1],
-      "missable": { "status": "unconfirmed", "from": "ch2", "last": "ch5", "after": "unknown", "window": "From Coffee Break (Chapter 2)", "lastChance": "Before the final mission (precaution)", "note": "Needs both characters; Game-Checklists advises doing it before the final mission [20]." },
+      "missable": { "status": "unconfirmed", "from": "ch2", "last": "ch5", "after": "unknown", "window": "From Coffee Break (Chapter 2)", "lastChance": "Before the final mission (precaution)", "note": "Needs both characters; same partner precaution [20]." },
       "guide": "Max out Strength for both Jason and Lucia [2][27][7].\n1. Possible once your partner can join you after Coffee Break [19][2].\n2. Train together at a fitness club: the partner trains passively alongside you [2][27].\n3. Check both meters under Touchpad > Jason & Lucia [2]."
     },
     {
@@ -358,7 +358,7 @@
     {
       "id": 49, "name": "Bad Luck, I Guess", "description": "Second time's the charm.", "grade": "bronze", "hidden": true, "exophaseRate": "0.04",
       "kinds": ["misc"], "stage": "s8", "sources": [1],
-      "missable": { "status": "unconfirmed", "from": "pro", "window": "Unknown", "lastChance": "Unknown", "note": "No source we read knows the trigger [7][27][19]; PowerPyx suspects a repeat of the Prologue's Payday Loans robbery [2]." },
+      "missable": { "status": "unconfirmed", "from": "pro", "window": "Unknown", "lastChance": "Unknown", "note": "Trigger unknown [7][27]; PowerPyx links it to the Prologue's Payday Loans store [2]." },
       "guide": "Nobody has confirmed what unlocks this yet [7][27][28].\n1. PowerPyx's lead: rob the Payday Loans store in Little Cuba, where the Prologue robbery happens, a second time [2].\n2. Keep a save from before you try, and check back here as guides update [2]."
     },
     {
